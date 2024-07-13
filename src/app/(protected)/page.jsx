@@ -1,13 +1,14 @@
 "use client";
-// import Image from "next/image";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
-// import Image from "next/image";
 import { PiEyeClosedBold } from "react-icons/pi";
+import { setUser } from "@/lib/features/auth/authSlice";
 
 export default function Home() {
-  const [login, setLogin] = useState(false);
+  const dispatch = useDispatch();
+  const [login, setLogin] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -36,6 +37,7 @@ export default function Home() {
 
       const data = await response.json();
       if (data.success) {
+        dispatch(setUser(data.data));
         window.location.href = "/home";
       } else {
         alert("Invalid email or password. Please try again.");
@@ -67,7 +69,8 @@ export default function Home() {
       }).then((res) => setLogin(true));
       const data = await response.json();
       if (data.success) {
-        setVerifyOtp(true);
+        setLogin(true);
+        alert("Signup successful");
       } else {
         console.error("Signup failed", data.error);
       }
@@ -91,11 +94,11 @@ export default function Home() {
       mobile: "",
     });
   };
-
+  
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center h-[100vh] ">
       <div
-        className={` sm:items-center sm:justify-center sm:w-auto mx-auto sm:h-auto rounded-2xl border-[3px] border-violet-500 flex gap-[1rem] p-[1rem] `}
+        className={` sm:items-center sm:justify-center sm:w-auto mx-auto sm:h-auto rounded-2xl border-[3px] border-violet-500 flex gap-[1rem] p-[1rem] bg-black`}
         style={{
           boxShadow: login
             ? "-6px 10px 0px 1px #8B5CF6"
@@ -108,7 +111,7 @@ export default function Home() {
             login
               ? handleSubmit(handleLogin) : handleSubmit(handleSignup)
           }
-          className=" w-[26rem] sm:w-[80vw] rounded-2xl shadow-md h-[33rem]"
+          className=" w-[26rem] sm:w-[80vw] rounded-2xl shadow-md h-[33rem] "
           style={{ right: login ? "8.5%" : "57%", transitionDuration: "300ms" }}
         >
           {login && (
@@ -149,24 +152,6 @@ export default function Home() {
                       {showPass ? <FaEye /> : <PiEyeClosedBold />}
                     </label>
                   </div>
-                  <div className="flex justify-between">
-                    <label
-                      htmlFor="check"
-                      className="flex items-center gap-[.5rem]"
-                    >
-                      <input type="checkbox" id="check" />
-                      Remember me
-                    </label>
-                    <div
-                      className="text-[#00f] hover:underline"
-                      onClick={() => {
-                        setForgotPassword(true);
-                        resetform();
-                      }}
-                    >
-                      Forgot Password
-                    </div>
-                  </div>
                 </div>
                 <button
                   type="submit"
@@ -174,7 +159,7 @@ export default function Home() {
                 >
                   Login
                 </button>
-                <div>
+                <div className="text-center">
                   Don&apos;t have an account?{" "}
                   <span
                     className="text-[#00f] hover:underline cursor-pointer"
@@ -253,12 +238,6 @@ export default function Home() {
                 >
                   Register
                 </button>
-                {/* <button
-                    type="button"
-                    className="border-[2px] border-black text-[1rem] rounded-lg p-[1rem] flex items-center gap-[.5rem] justify-center"
-                  >
-                    <FcGoogle size={30} /> Signup with Google
-                  </button> */}
                 <div className="text-center">
                   Already have an account?{" "}
                   <span

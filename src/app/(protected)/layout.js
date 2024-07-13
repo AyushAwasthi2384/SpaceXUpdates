@@ -13,7 +13,7 @@ const ProtectedLayout = ({ children }) => {
     if (auth.userData === null && !auth.isLoading) {
       dispatch(fetchUser());
     }
-  }, [auth.userData, auth.isLoading, dispatch]);
+  }, []);
 
   useEffect(() => {
     if (!auth.isLoading) {
@@ -23,13 +23,10 @@ const ProtectedLayout = ({ children }) => {
         router.replace("/home");
       }
     }
-  }, [auth.isLoading, auth.status, router]);
+  }, [auth.status, auth]);
 
   if (auth.isLoading) {
     return <div>Loading...</div>;
-  }
-  if (!auth.status) {
-    return null;
   }
   return children;
 };
