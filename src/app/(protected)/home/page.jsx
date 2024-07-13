@@ -17,7 +17,7 @@ export default function Page() {
     useEffect(() => {
         const fetchLaunches = async () => {
             setIsLoading(true)
-            const response = await fetch(`https://api.spacexdata.com/v3/launches?limit=1000`) // Fetch all launches
+            const response = await fetch(`https://api.spacexdata.com/v3/launches?limit=1000`)
             const data = await response.json()
             setLaunches(data)
             setFilteredLaunches(data)
@@ -55,7 +55,7 @@ export default function Page() {
 
         setFilteredLaunches(filtered)
         setTotalPages(Math.ceil(filtered.length / launchesPerPage))
-        setCurrentPage(1) // Reset to the first page when filters change
+        setCurrentPage(1)
     }
 
     const paginate = (pageNumber) => {
