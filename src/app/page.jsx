@@ -188,12 +188,6 @@ export default function Home() {
                 >
                   Login
                 </button>
-                {/* <button
-                    type="button"
-                    className="border-[2px] border-black text-[1rem] rounded-lg p-[1rem] flex items-center gap-[.5rem] justify-center"
-                  >
-                    <FcGoogle size={30} /> Login with Google
-                  </button> */}
                 <div>
                   Don&apos;t have an account?{" "}
                   <span
@@ -216,7 +210,6 @@ export default function Home() {
                   Welcome to Apna Consultant
                 </h1>
                 <div className="w-full flex flex-col gap-[1rem]">
-                  <div className="w-full flex gap-[1rem]">
                     <input
                       {...register("username", { required: true })}
                       className="w-full rounded-lg  bg-gray-500 text-white outline-none p-[1rem]"
@@ -225,15 +218,6 @@ export default function Home() {
                       value={formData.username}
                       onChange={handleChange}
                     />
-                    <input
-                      {...register("mobile", { required: true })}
-                      className="w-full rounded-lg  bg-gray-500 text-white outline-none p-[1rem]"
-                      type="number"
-                      placeholder="Mobile Number"
-                      value={formData.mobile}
-                      onChange={handleChange}
-                    />
-                  </div>
                   <input
                     {...register("email", { required: true })}
                     className="w-full rounded-lg  bg-gray-500 text-white outline-none p-[1rem]"

@@ -1,48 +1,34 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from '../../lib/features/auth/authSlice';
 
 const ProtectedLayout = ({ children }) => {
   const router = useRouter();
-  const [auth, setAuth] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch('/api/getcurrentuser');
-        if (!response.ok) {
-          throw new Error('Unauthorized or user not found');
-        }
-        const data = await response.json();
-        if (data.success) {
-          setAuth(true);
-        } else {
-          setAuth(false);
-        }
-      } catch (err) {
-        console.error(err);
-        setAuth(false);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchUser();
-  }, []);
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!isLoading) {
-      if (!auth) {
+    if (auth.userData === null && !auth.isLoading) {
+      dispatch(fetchUser());
+    }
+  }, [auth.userData, auth.isLoading, dispatch]);
+
+  useEffect(() => {
+    if (!auth.isLoading) {
+      if (!auth.status) {
         router.replace("/");
-      } else if (auth) {
-        router.replace("/dashboard");
+      } else {
+        router.replace("/home");
       }
     }
-  }, [isLoading, auth, router]);
+  }, [auth.isLoading, auth.status, router]);
 
-  if (isLoading) {
-    return <div>isLoading</div>;
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
   }
-  if (!auth) {
+  if (!auth.status) {
     return null;
   }
   return children;
