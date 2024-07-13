@@ -29,6 +29,13 @@ module.exports = {
         lightGrayPrimary: "#d9d9d9",
       },
     },
+    screens: {
+      'sm': { 'max': '800px' },
+      'md': { 'min': '670px', 'max': '767px' },
+      'lg': { 'min': '768px', 'max': '1439px' },
+      'xl': { 'min': '1440px' },
+      '2xl': { 'min': '2560px' },
+    },
   },
   plugins: [],
 };

@@ -95,28 +95,14 @@ export default function Home() {
   return (
     <div className="flex justify-center items-center h-[100vh]">
       <div
-        className={` sm:items-center sm:justify-center sm:w-auto mx-auto sm:h-auto rounded-2xl border-[3px] border-white flex  gap-[1rem] p-[1rem] `}
+        className={` sm:items-center sm:justify-center sm:w-auto mx-auto sm:h-auto rounded-2xl border-[3px] border-violet-500 flex gap-[1rem] p-[1rem] `}
         style={{
           boxShadow: login
-            ? "-6px 10px 0px 1px #fff"
-            : "6px 10px 0px 1px #fff",
+            ? "-6px 10px 0px 1px #8B5CF6"
+            : "6px 10px 0px 1px #8B5CF6",
           transitionDuration: "300ms",
         }}
       >
-        {/* <div
-          className="w-[45.5rem]   sm:hidden shadow-lg-yellowPrimary rounded-2xl sm:w-[30rem] sm:items-center h-[33rem] sm:h-[50rem] left-[8.5%] flex sm:flex-col justify-start items-end"
-          style={{
-            left: login ? "8.5%" : "44%",
-            transitionDuration: "300ms",
-            zIndex: 10,
-          }}
-        >
-          <Image
-            src={heroImg}
-            alt="hero"
-            className="w-[25rem] sm:items-center object-contain items-center rounded-2xl flip-x"
-          />
-        </div> */}
         <form
           onSubmit={
             login
@@ -149,7 +135,7 @@ export default function Home() {
                     />
                     <label
                       htmlFor="check"
-                      className={`flex rounded-lg w-[12%] h-full items-center justify-center ${showPass ? "bg-yellowPrimary" : " bg-gray-500"
+                      className={`flex rounded-lg w-[12%] h-full items-center justify-center ${showPass ? "bg-blue-500" : " bg-gray-500"
                         }`}
                       style={{ transitionDuration: "300ms" }}
                     >
@@ -184,7 +170,7 @@ export default function Home() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-yellowPrimary text-[1.2rem] rounded-lg p-[1rem] active:scale-95"
+                  className="bg-blue-500 text-[1.2rem] rounded-lg p-[1rem] active:scale-95"
                 >
                   Login
                 </button>
@@ -213,7 +199,7 @@ export default function Home() {
             <div className="h-full">
               <div className="form flex flex-col justify-around h-full p-[2rem]">
                 <h1 className="text-[1.5rem] font-[600]">
-                  Welcome to Apna Consultant
+                  Welcome
                 </h1>
                 <div className="w-full flex flex-col gap-[1rem]">
                   <div className="w-full flex gap-[1rem]">
@@ -253,7 +239,7 @@ export default function Home() {
                     />
                     <label
                       htmlFor="check"
-                      className={`flex rounded-lg w-[12%] h-full items-center justify-center cursor-pointer ${showPass ? "bg-yellowPrimary" : " bg-gray-500"
+                      className={`flex rounded-lg w-[12%] h-full items-center justify-center cursor-pointer ${showPass ? "bg-blue-500" : " bg-gray-500"
                         }`}
                       style={{ transitionDuration: "300ms" }}
                     >
@@ -279,7 +265,7 @@ export default function Home() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-yellowPrimary text-[1.2rem] rounded-lg p-[1rem] active:scale-95"
+                  className="bg-blue-500 text-[1.2rem] rounded-lg p-[1rem] active:scale-95"
                 >
                   Register
                 </button>

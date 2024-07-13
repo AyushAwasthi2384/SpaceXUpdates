@@ -96,7 +96,7 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
-    const launchesPerPage = 20
+    const launchesPerPage = 21
 
     const [search, setSearch] = useState('')
     const [year, setYear] = useState('')
@@ -156,22 +156,22 @@ export default function Page() {
 
     return (
         <div>
-            <div className="flex justify-center mb-4 p-[2rem]">
+            <div className="flex justify-between sm:flex-col w-[60%] mx-auto mb-4 p-[1rem] mt-[1rem] sm:gap-[1rem] bg-gray-500 rounded-2xl">
                 <input
                     type="text"
                     placeholder="Search by mission name"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="p-2 rounded-lg border border-blue-500 bg-gray-800 outline-none border-gray-300"
+                    className="p-2 w-full rounded-lg bg-gray-800 outline-none border-gray-300"
                 />
-                <div>
-                    <select value={year} onChange={(e) => setYear(e.target.value)} className="p-2 rounded-lg border border-blue-500 bg-gray-800 ml-2">
+                <div className="w-[25rem] sm:w-full sm:grid sm:grid-cols-2 flex gap-[.5rem]">
+                    <select value={year} onChange={(e) => setYear(e.target.value)} className="outline-none p-2 rounded-lg bg-gray-800 ml-2 sm:ml-0">
                         <option value="">Select Year</option>
                         {Array.from({ length: new Date().getFullYear() - 2005 + 1 }, (_, i) => 2006 + i).map((year) => (
                             <option key={year} value={year}>{year}</option>
                         ))}
                     </select>
-                    <select value={status} onChange={(e) => setStatus(e.target.value)} className="p-2 rounded-lg border border-blue-500 bg-gray-800 ml-2">
+                    <select value={status} onChange={(e) => setStatus(e.target.value)} className="outline-none p-2 rounded-lg bg-gray-800">
                         <option value="">Select Status</option>
                         <option value="successful">Successful</option>
                         <option value="failed">Failed</option>
@@ -180,7 +180,7 @@ export default function Page() {
             </div>
             {isLoading ? <p>Loading...</p> : (
                 <div>
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-[2rem]">
+                    <div className="grid grid-cols-3 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-[2rem]">
                         {displayedLaunches.map((launch) => (
                             <LaunchCard key={launch.flight_number} launch={launch} />
                         ))}
