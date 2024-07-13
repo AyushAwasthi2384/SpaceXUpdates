@@ -82,10 +82,11 @@ export default function Page() {
 
   return (
     <div>
-      <div className="flex justify-around items-center mx-20">
+      <div className="flex sm:flex-col justify-around items-center mx-20 sm:mx-4">
         <div>
           <h1 className="text-4xl font-bold text-center">SpaceX Launches</h1>
         </div>
+       <div className="flex items-center">
         <div className="flex justify-between sm:flex-col w-[60%] mx-auto mb-4 p-[1rem] mt-[1rem] sm:gap-[1rem] bg-gray-700 rounded-2xl">
           <input
             type="text"
@@ -93,19 +94,19 @@ export default function Page() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="p-2 w-full rounded-lg bg-gray-800 outline-none border-gray-300"
-          />
+            />
           <div className="w-[25rem] sm:w-full sm:grid sm:grid-cols-2 flex gap-[.5rem]">
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
               className="outline-none p-2 rounded-lg bg-gray-800 ml-2 sm:ml-0"
-            >
+              >
               <option value="">Select Year</option>
               {Array.from(
-                { length: new Date().getFullYear() - 2005 + 1 },
-                (_, i) => 2006 + i
-              ).map((year) => (
-                <option key={year} value={year}>
+                  { length: new Date().getFullYear() - 2005 + 1 },
+                  (_, i) => 2006 + i
+                ).map((year) => (
+                    <option key={year} value={year}>
                   {year}
                 </option>
               ))}
@@ -114,7 +115,7 @@ export default function Page() {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               className="outline-none p-2 rounded-lg bg-gray-800"
-            >
+              >
               <option value="">Select Status</option>
               <option value="successful">Successful</option>
               <option value="failed">Failed</option>
@@ -124,11 +125,12 @@ export default function Page() {
         <div>
           <button
             onClick={() => logoutUser()}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-6 rounded"
-          >
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-6 sm:p-2 rounded"
+            >
             Logout
           </button>
         </div>
+        </div> 
       </div>
       {isLoading ? (
         <p>Loading...</p>
